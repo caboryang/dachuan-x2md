@@ -35,7 +35,7 @@ AI assistants **can't read X links**. X puts most content behind a login, so whe
   - An **`MD` button** on every post (click to copy that post, Shift+click to copy the whole page)
   - Keyboard shortcut **Alt+Shift+M**
   - Right-click menu on any page or X link
-- 🤖 **Send to AI.** One click copies the Markdown and opens Claude, ChatGPT or Gemini. You can add your own prompt, such as "summarize the key arguments".
+- 🤖 **Send to AI.** One click opens Claude, ChatGPT or Gemini with the Markdown already typed into the chat box. You can add your own prompt, such as "summarize the key arguments".
 - 🧰 **Built-in converter page.** Paste one or more links for a batch conversion, with a live preview, a `.md` download and history.
 - 🔐 **Private.** No servers, no analytics, no account. Everything runs in your browser.
 - 🌏 **English and 简体中文.** The interface follows your browser language.

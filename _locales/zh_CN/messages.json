@@ -1,0 +1,10 @@
+{
+  "extName": { "message": "Dachuan X2MD – X 帖子转 Markdown" },
+  "extShortName": { "message": "Dachuan X2MD" },
+  "extDesc": { "message": "把 X（原 Twitter）帖子、串推、X Articles、时间线一键转换为干净的 Markdown，方便喂给 Claude / ChatGPT / Gemini。本地运行。" },
+  "actionTitle": { "message": "Dachuan X2MD：复制页面为 Markdown" },
+  "cmdCopy": { "message": "复制当前 X 页面为 Markdown" },
+  "menuPage": { "message": "Dachuan X2MD：复制本页为 Markdown" },
+  "menuLink": { "message": "Dachuan X2MD：把这个链接转成 Markdown" },
+  "menuOpen": { "message": "Dachuan X2MD：打开转换器" }
+}

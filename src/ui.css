@@ -1,0 +1,59 @@
+:root {
+  --bg: #ffffff; --bg-soft: #f7f9f9; --card: #ffffff; --line: #e6ecf0;
+  --text: #0f1419; --muted: #536471; --accent: #1d9bf0; --accent-ink: #ffffff;
+  --accent-soft: rgba(29, 155, 240, .1); --ok: #00ba7c; --err: #f4212e;
+  --code-bg: #f3f5f7; --shadow: 0 1px 2px rgba(15, 20, 25, .06), 0 8px 24px rgba(15, 20, 25, .06);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0d10; --bg-soft: #13171c; --card: #15191e; --line: #2a3138;
+    --text: #e7e9ea; --muted: #8b98a5; --accent: #1d9bf0; --accent-ink: #fff;
+    --accent-soft: rgba(29, 155, 240, .16); --code-bg: #1c2127; --shadow: 0 8px 24px rgba(0, 0, 0, .35);
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text);
+  font: 14px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button { font: inherit; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 36px; padding: 0 14px;
+  border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--text);
+  font-weight: 600; cursor: pointer; white-space: nowrap; transition: background .15s, border-color .15s, opacity .15s; }
+.btn:hover { background: var(--bg-soft); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+.btn.primary:hover { opacity: .88; }
+.btn.accent { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.accent:hover { opacity: .9; }
+.btn.sm { height: 30px; padding: 0 11px; font-size: 13px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid var(--line);
+  border-radius: 999px; font-size: 12.5px; color: var(--muted); cursor: pointer; user-select: none; background: var(--card); }
+.chip input { margin: 0; accent-color: var(--accent); }
+.chip:has(input:checked) { color: var(--text); border-color: var(--accent); background: var(--accent-soft); }
+.status { font-size: 13px; color: var(--muted); }
+.status.ok { color: var(--ok); } .status.err { color: var(--err); }
+.spinner { width: 14px; height: 14px; border: 2px solid var(--line); border-top-color: var(--accent); border-radius: 50%;
+  animation: spin .8s linear infinite; display: inline-block; vertical-align: -2px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+textarea.md-src { width: 100%; resize: vertical; border: 1px solid var(--line); border-radius: 12px; padding: 12px;
+  background: var(--code-bg); color: var(--text); font: 12.5px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.md-preview { line-height: 1.7; overflow-wrap: anywhere; }
+.md-preview img { max-width: 100%; border-radius: 12px; border: 1px solid var(--line); display: block; margin: 6px 0; }
+.md-preview blockquote { margin: 10px 0; padding: 4px 14px; border-left: 3px solid var(--line); color: var(--muted); }
+.md-preview pre { background: var(--code-bg); padding: 12px; border-radius: 10px; overflow: auto; }
+.md-preview code { background: var(--code-bg); padding: 1px 5px; border-radius: 5px; font-size: .92em; }
+.md-preview pre code { background: none; padding: 0; }
+.md-preview h1 { font-size: 1.45em; line-height: 1.3; margin: .2em 0 .6em; }
+.md-preview h2 { font-size: 1.2em; margin: 1.2em 0 .5em; }
+.md-preview h3 { font-size: 1.02em; margin: 1.2em 0 .4em; color: var(--muted); }
+.md-preview hr { border: 0; border-top: 1px solid var(--line); margin: 18px 0; }
+.md-meta { display: grid; grid-template-columns: max-content 1fr; gap: 2px 12px; font-size: 12px; color: var(--muted);
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin: 0 0 14px; }
+.md-meta dt { font-weight: 600; } .md-meta dd { margin: 0; overflow-wrap: anywhere; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 2px; background: var(--bg-soft); }
+.seg button { border: 0; background: none; color: var(--muted); padding: 4px 12px; border-radius: 999px; cursor: pointer; font-size: 13px; font-weight: 600; }
+.seg button.on { background: var(--card); color: var(--text); box-shadow: 0 1px 2px rgba(0,0,0,.12); }

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dachuan X2MD</title>
+<link rel="icon" href="icons/icon32.png">
+<link rel="stylesheet" href="src/ui.css">
+<link rel="stylesheet" href="src/converter.css">
+</head>
+<body>
+<nav class="top">
+  <div class="wrap nav-in">
+    <a class="brand" href="#"><img src="icons/icon48.png" alt=""><span>Dachuan X2MD</span></a>
+    <div class="nav-links"><a href="#how" data-i18n="navHow"></a><a href="#tips" data-i18n="navTips"></a><a href="#faq" data-i18n="navFaq"></a><a href="#history" data-i18n="navHistory"></a></div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="badge" data-i18n="badge"></div>
+    <h1 data-i18n="heroTitle"></h1>
+    <p class="sub" data-i18n="heroSub"></p>
+    <form id="form" class="convert" autocomplete="off">
+      <input id="url" type="text" data-i18n-ph="urlPlaceholder" spellcheck="false">
+      <button class="btn primary" id="go" type="submit" data-i18n="convert"></button>
+    </form>
+    <div class="opts-row">
+      <div class="chips" id="opts"></div>
+      <label class="method"><span data-i18n="method"></span>
+        <select id="method">
+          <option value="auto" data-i18n="m_auto"></option>
+          <option value="tab" data-i18n="m_tab"></option>
+          <option value="api" data-i18n="m_api"></option>
+        </select>
+      </label>
+    </div>
+    <div class="status" id="status"></div>
+  </div>
+</header>
+
+<section class="wrap result hidden" id="result">
+  <div class="card">
+    <div class="res-head">
+      <div class="seg"><button id="tabPrev" class="on" type="button" data-i18n="preview"></button><button id="tabSrc" type="button">Markdown</button></div>
+      <span class="status" id="stats"></span>
+      <span class="sp"></span>
+      <button class="btn sm" id="copy" type="button" data-i18n="copy"></button>
+      <button class="btn sm" id="dl" type="button" data-i18n="download"></button>
+      <button class="btn sm accent" data-ai="claude" type="button" data-i18n="sendClaude"></button>
+      <button class="btn sm" data-ai="chatgpt" type="button">ChatGPT</button>
+      <button class="btn sm" data-ai="gemini" type="button">Gemini</button>
+    </div>
+    <div class="md-preview" id="prev"></div>
+    <textarea class="md-src hidden" id="src" spellcheck="false"></textarea>
+    <div class="prompt-row">
+      <label for="prompt" data-i18n="promptLabel"></label>
+      <input id="prompt" type="text" data-i18n-ph="promptPlaceholder">
+    </div>
+  </div>
+</section>
+
+<section class="wrap block" id="how">
+  <h2 data-i18n="howTitle"></h2>
+  <div class="steps">
+    <div class="step"><i>1</i><h3 data-i18n="s1t"></h3><p data-i18n="s1d"></p></div>
+    <div class="step"><i>2</i><h3 data-i18n="s2t"></h3><p data-i18n="s2d"></p></div>
+    <div class="step"><i>3</i><h3 data-i18n="s3t"></h3><p data-i18n="s3d"></p></div>
+    <div class="step"><i>4</i><h3 data-i18n="s4t"></h3><p data-i18n="s4d"></p></div>
+  </div>
+  <p class="hint" data-i18n-html="howHint"></p>
+</section>
+
+<section class="wrap block" id="tips">
+  <h2 data-i18n="tipsTitle"></h2>
+  <div class="tips">
+    <div class="tip"><h3 data-i18n="t1t"></h3><p data-i18n="t1d"></p></div>
+    <div class="tip"><h3 data-i18n="t2t"></h3><p data-i18n="t2d"></p></div>
+    <div class="tip"><h3 data-i18n="t3t"></h3><p data-i18n="t3d"></p></div>
+    <div class="tip"><h3 data-i18n="t4t"></h3><p data-i18n="t4d"></p></div>
+  </div>
+</section>
+
+<section class="wrap block" id="faq">
+  <h2 data-i18n="faqTitle"></h2>
+  <details><summary data-i18n="q1"></summary><p data-i18n="a1"></p></details>
+  <details><summary data-i18n="q2"></summary><p data-i18n="a2"></p></details>
+  <details><summary data-i18n="q3"></summary><p data-i18n="a3"></p></details>
+  <details><summary data-i18n="q4"></summary><p data-i18n="a4"></p></details>
+  <details><summary data-i18n="q5"></summary><p data-i18n="a5"></p></details>
+</section>
+
+<section class="wrap block" id="history">
+  <div class="hist-head"><h2 data-i18n="historyTitle"></h2><button class="btn sm" id="clearHist" type="button" data-i18n="clear"></button></div>
+  <ul class="hist" id="hist"></ul>
+</section>
+
+<footer class="wrap foot" data-i18n="footer"></footer>
+
+<script src="src/i18n.js"></script>
+<script src="src/md.js"></script>
+<script src="src/api.js"></script>
+<script src="src/preview.js"></script>
+<script src="src/ui.js"></script>
+<script src="src/converter.js"></script>
+</body>
+</html>

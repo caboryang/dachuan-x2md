@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dachuan X2MD</title>
+<link rel="stylesheet" href="src/ui.css">
+<style>
+  body { width: 400px; }
+  header { display: flex; align-items: center; gap: 10px; padding: 14px 16px 10px; border-bottom: 1px solid var(--line); }
+  header img { width: 28px; height: 28px; border-radius: 7px; }
+  header b { font-size: 15px; } header small { display: block; color: var(--muted); font-size: 12px; line-height: 1.3; }
+  header .sp { flex: 1; }
+  main { padding: 12px 16px 14px; display: grid; gap: 10px; }
+  .big { height: 42px; font-size: 15px; width: 100%; }
+  .row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .row .btn { flex: 1; }
+  .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  textarea.md-src { height: 180px; }
+  .notx { text-align: center; padding: 18px 6px; color: var(--muted); }
+  .notx p { margin: 0 0 12px; }
+  details summary { cursor: pointer; color: var(--muted); font-size: 13px; }
+  details .chips { margin-top: 8px; }
+  .hidden { display: none !important; }
+  footer { padding: 0 16px 12px; font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+<header>
+  <img src="icons/icon48.png" alt="">
+  <div><b>Dachuan X2MD</b><small data-i18n="subtitle"></small></div>
+  <span class="sp"></span>
+  <button class="btn sm" id="openConv" data-i18n-title="converterTitle" data-i18n="converter"></button>
+</header>
+
+<main id="onX" class="hidden">
+  <button class="btn primary big" id="copy" disabled data-i18n="copyPage"></button>
+  <div class="meta"><span class="status" id="status"><span class="spinner"></span></span>
+    <div class="seg"><button id="tabSrc" class="on" data-i18n="source"></button><button id="tabPrev" data-i18n="preview"></button></div></div>
+  <textarea class="md-src" id="out" spellcheck="false" data-i18n-ph="mdPlaceholder"></textarea>
+  <div class="md-preview hidden" id="prev" style="max-height:260px;overflow:auto;border:1px solid var(--line);border-radius:12px;padding:12px"></div>
+  <div class="row">
+    <button class="btn sm" id="dl" disabled data-i18n="download"></button>
+    <button class="btn sm" id="reload" data-i18n="reload"></button>
+  </div>
+  <div class="row" data-i18n-title="sendTitle">
+    <button class="btn sm accent" data-ai="claude" disabled data-i18n="sendClaude"></button>
+    <button class="btn sm" data-ai="chatgpt" disabled>ChatGPT</button>
+    <button class="btn sm" data-ai="gemini" disabled>Gemini</button>
+  </div>
+  <details><summary data-i18n="options"></summary><div class="chips" id="opts"></div>
+    <label class="chip" style="margin-top:6px"><input type="checkbox" id="btnToggle"><span data-i18n="showButtons"></span></label>
+  </details>
+</main>
+
+<main id="notX" class="hidden">
+  <div class="notx">
+    <p data-i18n-html="notX"></p>
+    <button class="btn primary" id="openConv2" data-i18n="openConverter"></button>
+  </div>
+</main>
+<footer><span data-i18n="shortcutHint"></span><span>A Dachuan Creation</span></footer>
+<script src="src/i18n.js"></script>
+<script src="src/md.js"></script>
+<script src="src/preview.js"></script>
+<script src="src/ui.js"></script>
+<script src="src/popup.js"></script>
+</body>
+</html>

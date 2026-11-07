@@ -13,7 +13,7 @@
 
 English · [简体中文](README.zh-CN.md)
 
-<img src="docs/hero.png" alt="Dachuan X2MD: converter page and popup" width="100%">
+<img src="docs/demo.gif" alt="Dachuan X2MD demo: one click turns an X thread into Markdown and sends it to Claude" width="100%">
 
 </div>
 
@@ -39,6 +39,10 @@ AI assistants **can't read X links**. X puts most content behind a login, so whe
 - 🧰 **Built-in converter page.** Paste one or more links for a batch conversion, with a live preview, a `.md` download and history.
 - 🔐 **Private.** No servers, no analytics, no account. Everything runs in your browser.
 - 🌏 **English and 简体中文.** The interface follows your browser language.
+
+## Screenshots
+
+<img src="docs/hero.png" alt="Dachuan X2MD: converter page and popup" width="100%">
 
 ## Example output
 

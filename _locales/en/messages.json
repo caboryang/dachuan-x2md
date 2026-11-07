@@ -1,0 +1,10 @@
+{
+  "extName": { "message": "Dachuan X2MD – Save X posts as Markdown" },
+  "extShortName": { "message": "Dachuan X2MD" },
+  "extDesc": { "message": "Turn X (formerly Twitter) posts, threads, Articles and timelines into clean Markdown for Claude, ChatGPT and Gemini. Runs locally." },
+  "actionTitle": { "message": "Dachuan X2MD: Copy page as Markdown" },
+  "cmdCopy": { "message": "Copy the current X page as Markdown" },
+  "menuPage": { "message": "Dachuan X2MD: Copy this page as Markdown" },
+  "menuLink": { "message": "Dachuan X2MD: Convert this link to Markdown" },
+  "menuOpen": { "message": "Dachuan X2MD: Open converter" }
+}

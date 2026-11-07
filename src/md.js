@@ -118,10 +118,27 @@
     let buf = '';
     const flush = () => { const s = clean(buf); if (s) out.push(s); buf = ''; };
     const push = (s) => { flush(); if (s && s.trim()) out.push(s.replace(/\s+$/, '')); };
+    let ol = 0;
     for (const n of el.childNodes) {
       if (n.nodeType === 3) { buf += n.nodeValue; continue; }
       if (n.nodeType !== 1 || SKIP_TAGS.has(n.tagName)) continue;
       const t = n.tagName;
+      // X Articles render Draft.js blocks as <div class="longform-…">
+      const lf = n.classList && [...n.classList].find((c) => c.startsWith('longform-'));
+      if (lf !== 'longform-ordered-list-item') ol = 0;
+      if (lf && t === 'DIV' && !hasBlockChild(n)) {
+        const kind = lf.slice(9);
+        const H = { 'header-one': '# ', 'header-two': '## ', 'header-three': '### ' };
+        const txt = clean(inline(n, o));
+        if (kind === 'code-block') { push('```\n' + n.textContent.replace(/\n$/, '') + '\n```'); continue; }
+        if (!txt) continue;
+        if (H[kind]) push(H[kind] + txt.replace(/\n+/g, ' '));
+        else if (kind === 'unordered-list-item') push('- ' + txt);
+        else if (kind === 'ordered-list-item') push(`${++ol}. ` + txt);
+        else if (kind === 'blockquote') push(txt.split('\n').map((l) => '> ' + l).join('\n'));
+        else push(txt);
+        continue;
+      }
       if (n.getAttribute('aria-hidden') === 'true' && !n.querySelector('img')) continue;
       if (/^H[1-6]$/.test(t)) { push('#'.repeat(+t[1]) + ' ' + clean(inline(n, o)).replace(/\n+/g, ' ')); continue; }
       if (t === 'UL' || t === 'OL') { push(listMd(n, o, depth)); continue; }
@@ -269,13 +286,19 @@
     const url = absUrl(location.href.split('?')[0]);
 
     if (type === 'article') {
-      const rootEl = document.querySelector(ARTICLE_SEL);
-      const scope = (rootEl && rootEl.closest('article,[data-testid="primaryColumn"],main')) || document;
+      // body: the rich-text view only (the outer read view also holds title, cover and action buttons)
+      const rootEl = document.querySelector('[data-testid="twitterArticleRichTextView"]') ||
+        document.querySelector('[data-testid="longformRichTextComponent"]') || document.querySelector(ARTICLE_SEL);
+      const readView = document.querySelector('[data-testid="twitterArticleReadView"]') || rootEl;
+      // author/time live in the surrounding tweet <article>, outside the read view
+      const scope = (readView && readView.parentElement && readView.parentElement.closest('article[data-testid="tweet"]')) ||
+        document.querySelector('[data-testid="primaryColumn"]') || document;
       const titleEl = document.querySelector('[data-testid="twitter-article-title"]') || (rootEl && rootEl.querySelector('h1'));
       const title = titleEl ? clean(titleEl.innerText || titleEl.textContent) : document.title.replace(/ \/ X$/, '');
       const head = parseCore(scope, () => true, o);
-      const cover = scope.querySelector('[data-testid="article-cover-image"] img, [data-testid="twitter-article-cover"] img');
-      let body = rootEl ? blockMd(rootEl, o) : '';
+      const cover = [...(readView || document).querySelectorAll('[data-testid="article-cover-image"] img, [data-testid="twitter-article-cover"] img, [data-testid="tweetPhoto"] img')]
+        .find((img) => !rootEl || !rootEl.contains(img));
+      let body = rootEl ? blockMd(rootEl, o).replace(/^(- .*)\n\n(?=- )/gm, '$1\n').replace(/^(- .*)\n\n(?=- )/gm, '$1\n').replace(/^(\d+\. .*)\n\n(?=\d+\. )/gm, '$1\n').replace(/^(\d+\. .*)\n\n(?=\d+\. )/gm, '$1\n') : '';
       if (title && body.startsWith('# ' + title)) body = body.slice(title.length + 2).trim();
       if (!body) throw new Error(T('errNoArticle'));
       return render({ type: 'article', url, article: { title, md: body, cover: cover ? imgUrl(cover.src, o.imageSize) : '' }, main: head }, o);

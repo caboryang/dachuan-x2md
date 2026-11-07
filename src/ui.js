@@ -31,14 +31,14 @@
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(a.href), 4000);
   }
+  // Copies the text (fallback), then asks the service worker to open the AI site and
+  // type the text into its composer. The popup may close as soon as the new tab opens,
+  // so the work happens in the background.
   async function sendToAI(key, md, prompt) {
-    const t = AI_TARGETS[key];
     const text = (prompt ? prompt.trim() + '\n\n' : '') + md;
     await copy(text);
-    const enc = encodeURIComponent(text);
-    const url = t.q && enc.length < 7000 ? t.q + enc : t.url;
-    chrome.tabs.create({ url });
-    return url === t.url; // true = 需要手动粘贴
+    chrome.runtime.sendMessage({ type: 'x2md:sendAI', key, text });
+    return false;
   }
   function renderOptions(container, opts, onChange) {
     container.innerHTML = '';
